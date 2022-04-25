@@ -45,7 +45,7 @@ BoutonStop =  Button(screen,text="  Arret ",bg="red")
 #affichage
 CadreLeft.pack(side="left")
 Cadreright.pack(side="right")
-#labelImage.pack()
+labelImage.pack()
 BoutonStart.pack(side="left")
 BoutonStop.pack(side="right")
 LabelTitre2.pack()
