@@ -16,13 +16,7 @@ def ConfigSerial():
     Connexion = input("Emplacement de connextion: ")
     Connexion = str(Connexion)
     Telementrie = serial.Serial(Connexion,9600)
-#Menu
-configMenu = Menu(screen,bg="grey",fg="white")
-Option = Menu(configMenu,tearoff=0)
-Option.add_command(label="Connexion serie",command=ConfigSerial)
-Option.add_command(label="Config baterie")
-configMenu.add_cascade(label="Configuration",menu=Option)
-screen.config(menu=configMenu)
+
 #mise en place de l'image central
 IMGGOOD = PhotoImage(file="image/good.png")
 IMGBAD = PhotoImage(file="image/bad.png")
@@ -60,26 +54,32 @@ LabelImageD = Label(Cadreright,image=IMG100,bg="blue")
 LabelEcartD4 = Label(Cadreright,bg="blue",height="4",width="10")
 #Bouton
 def CommandStart():
-    BoutonStart.destroy()
+    
     def Stop(Value):
         global VarBoucle
         VarBoucle = Value
     
-    BoutonStop =  Button(screen,text="  Arret ",bg="red",command=lambda *arg :Stop(0)).pack()
     
     while VarBoucle == 1:
         serialdata = Telemetrie.readline()
         print(serialdata)
     print("fin")
-    BoutonStart.pack()
-
-BoutonStart = Button(screen,text="Demarage",command=CommandStart,bg="green")
+ #Menu
+configMenu = Menu(screen,bg="grey",fg="white")
+Option = Menu(configMenu,tearoff=0)
+StartStop = Menu(configMenu,tearoff=0)
+Option.add_command(label="Connexion serie",command=ConfigSerial)
+Option.add_command(label="Config baterie")
+StartStop.add_command(label="Start",command=CommandStart)
+StartStop.add_command(label="Stop")
+configMenu.add_cascade(label="Configuration",menu=Option)
+configMenu.add_cascade(label="On off",menu=StartStop)
+screen.config(menu=configMenu) 
 
 #affichage
 CadreLeft.pack(side="left")
 Cadreright.pack(side="right")
 labelImage.pack()
-BoutonStart.pack()
 LabelTitre2.pack()
 LabelTitre1.pack()
 #Zone tension
