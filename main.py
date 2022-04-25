@@ -35,8 +35,17 @@ LabelTitre2 = Label(CadreLeft, text="Temperature",bg="blue",fg="white",font=("ar
 LabelTitre1 = Label(Cadreright,text="  Batterie ",bg="blue",fg="white",font=("arial",30))
 LabelTemp = Label(CadreLeft)
 LabelBat = Label(Cadreright)
-LabelEcartG = Label(CadreLeft,height="35",width="10",bg="blue")
-LabelEcartD = Label(Cadreright,height="35",width="10",bg="blue")
+LabelEcartG1 = Label(CadreLeft,height="17",width="10",bg="blue")
+LabelAffichageG = Label(CadreLeft,width="10",height="2")
+LabelEcartG2 = Label(CadreLeft,height="17",width="10",bg="blue")
+
+LabelEcartD1 = Label(Cadreright,height="6",width="10",bg="blue")
+LabelTextD1 = Label(Cadreright,text="Tension de la baterie",fg="white",bg="blue")
+LabelAffichageD1 = Label(Cadreright,width="10",height="2")
+LabelEcartD2 = Label(Cadreright,height="8",width="10",bg="blue")
+LabelTextD2 = Label(Cadreright,text="Poursentage",fg="white",bg="blue")
+LabelAffichageD2 = Label(Cadreright,width="10",height="2")
+LabelEcartD3 = Label(Cadreright,height="18",width="10",bg="blue")
 #Bouton
 def CommandStart():
     BoutonStart.destroy()
@@ -61,9 +70,17 @@ labelImage.pack()
 BoutonStart.pack()
 LabelTitre2.pack()
 LabelTitre1.pack()
+#Zone tension
+LabelEcartD1.pack()
+LabelTextD1.pack()
+LabelAffichageD1.pack()
+LabelEcartD2.pack()
+LabelTextD2.pack()
+LabelAffichageD2.pack()
+LabelEcartD3.pack()
 #Zone temperature
-LabelEcartG.pack()
-LabelEcartD.pack()
-#boucle
+LabelEcartG1.pack()
+LabelAffichageG.pack()
+LabelEcartG2.pack()
 
 screen.mainloop()
