@@ -35,8 +35,8 @@ LabelTitre2 = Label(CadreLeft, text="Temperature",bg="blue",fg="white",font=("ar
 LabelTitre1 = Label(Cadreright,text="  Batterie ",bg="blue",fg="white",font=("arial",30))
 LabelTemp = Label(CadreLeft)
 LabelBat = Label(Cadreright)
-LabelEcartG = Label(CadreLeft,height="25",width="10",bg="blue")
-LabelEcartD = Label(Cadreright,height="25",width="10",bg="blue")
+LabelEcartG = Label(CadreLeft,height="35",width="10",bg="blue")
+LabelEcartD = Label(Cadreright,height="35",width="10",bg="blue")
 #Bouton
 def CommandStart():
     BoutonStart.destroy()
