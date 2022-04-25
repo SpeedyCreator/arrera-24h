@@ -35,21 +35,35 @@ LabelTitre2 = Label(CadreLeft, text="Temperature",bg="blue",fg="white",font=("ar
 LabelTitre1 = Label(Cadreright,text="  Batterie ",bg="blue",fg="white",font=("arial",30))
 LabelTemp = Label(CadreLeft)
 LabelBat = Label(Cadreright)
+LabelEcartG = Label(CadreLeft,height="25",width="10",bg="blue")
+LabelEcartD = Label(Cadreright,height="25",width="10",bg="blue")
 #Bouton
 def CommandStart():
-    while True:
+    BoutonStart.destroy()
+    def Stop(Value):
+        global VarBoucle
+        VarBoucle = Value
+    
+    BoutonStop =  Button(screen,text="  Arret ",bg="red",command=lambda *arg :Stop(0)).pack()
+    
+    while VarBoucle == 1:
         serialdata = Telemetrie.readline()
         print(serialdata)
+    print("fin")
+    BoutonStart.pack()
+
 BoutonStart = Button(screen,text="Demarage",command=CommandStart,bg="green")
-BoutonStop =  Button(screen,text="  Arret ",bg="red")
+
 #affichage
 CadreLeft.pack(side="left")
 Cadreright.pack(side="right")
 labelImage.pack()
-BoutonStart.pack(side="left")
-BoutonStop.pack(side="right")
+BoutonStart.pack()
 LabelTitre2.pack()
 LabelTitre1.pack()
+#Zone temperature
+LabelEcartG.pack()
+LabelEcartD.pack()
 #boucle
 
 screen.mainloop()
