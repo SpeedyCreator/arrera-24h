@@ -12,14 +12,14 @@ VarBoucle = 0
 Telemetrie = serial.Serial()
 #fonction
 def ConfigSerial():
-    print("Ou es connecter votre arduino ?")
-    Connexion = input("Emplacement de connextion: ")
-    Connexion = str(Connexion)
-    Telementrie = serial.Serial(Connexion,9600)
+    Telementrie = serial.Serial("/dev/ttyUSB0")
+    print(Telemetrie.name)
 
 #mise en place de l'image central
-IMGGOOD = PhotoImage(file="image/good.png")
-IMGBAD = PhotoImage(file="image/bad.png")
+IMGNORMAL1 = PhotoImage(file="image/normal1.png")
+IMGNORMAL2 = PhotoImage(file="image/normal2.png")
+IMGCHAUD = PhotoImage(file="image/chaud.png")
+IMGFROID = PhotoImage(file="image/froid.png")
 IMG100 = PhotoImage(file="image/100%.png")
 IMG80 = PhotoImage(file="image/80%.png")
 IMG60 = PhotoImage(file="image/60%.png")
@@ -40,7 +40,7 @@ LabelBat = Label(Cadreright)
 LabelEcartG1 = Label(CadreLeft,height="17",width="10",bg="blue")
 LabelAffichageG = Label(CadreLeft,width="10",height="2")
 LabelEcartG2 = Label(CadreLeft,height="8",width="10",bg="blue")
-LabelImageG = Label(CadreLeft,image=IMGGOOD,bg="blue")
+LabelImageG = Label(CadreLeft,image=IMGNORMAL1,bg="blue")
 LabelEcartG3 = Label(CadreLeft,height="4",width="10",bg="blue")
 
 LabelEcartD1 = Label(Cadreright,height="6",width="10",bg="blue")
@@ -54,22 +54,19 @@ LabelImageD = Label(Cadreright,image=IMG100,bg="blue")
 LabelEcartD4 = Label(Cadreright,bg="blue",height="4",width="10")
 #Bouton
 def CommandStart():
-    
-    def Stop(Value):
-        global VarBoucle
-        VarBoucle = Value
-    
-    
+    print(Telemetrie.name)
+    Telemetrie.open()
     while VarBoucle == 1:
         serialdata = Telemetrie.readline()
         print(serialdata)
-    print("fin")
+
  #Menu
 configMenu = Menu(screen,bg="grey",fg="white")
 Option = Menu(configMenu,tearoff=0)
 StartStop = Menu(configMenu,tearoff=0)
 Option.add_command(label="Connexion serie",command=ConfigSerial)
 Option.add_command(label="Config baterie")
+Option.add_command(label="Config temperature")
 StartStop.add_command(label="Start",command=CommandStart)
 StartStop.add_command(label="Stop")
 configMenu.add_cascade(label="Configuration",menu=Option)
