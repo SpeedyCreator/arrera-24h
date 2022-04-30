@@ -1,33 +1,23 @@
-from sqlite3 import connect
 from tkinter import*
 import os
 import serial
+import time
 port ="/dev/ttyUSB0"
+color = "white"
+TextColor = "black"
 #fenetre principale
 screen = Tk()
 screen.title("BMW M1 #1 telemetrie")
 screen.minsize(1100,500)
-screen.config(bg = "white")
+screen.config(bg = color)
 screen.iconphoto(False,PhotoImage(file='image/bmw.png'))
-#Connextion serie
-ConnectSerial = Toplevel()
-ConnectSerial.iconphoto(False,PhotoImage(file='image/bmw.png'))
-ConnectSerial.title("Connextion a l'arduino")
-ConnectSerial.minsize(500,500)
-ConnectSerial.minsize(500,500)
-Titre = Label(ConnectSerial,text="Connextion",font=("arial",30)).pack()
-entry = Entry(ConnectSerial,width=20).pack()
-def Valider(port):
-    port = entry.get()
-    return port
-BoutonValider = Button(ConnectSerial,text="Valider",bg="green").pack()
 #varriable
 VarBoucle = 0
 Telementrie = serial.Serial(port,9600,timeout=1)
 #fonction
 def VerificationConnextion():
     print("Votre arduino et connecter sur : ")
-    print(Telementrie.name())
+    print(Telementrie.name)
 
 #mise en place de l'image central
 IMGNORMAL1 = PhotoImage(file="image/normal1.png")
@@ -43,36 +33,37 @@ IMG0 = PhotoImage(file="image/0.png")
 IMGcentral = PhotoImage(file="image/image.png")
 labelImage = Label(image=IMGcentral)
 #creation des deux cadre
-CadreLeft= Frame(screen,width=300,height=800,bg = "white")
-Cadreright= Frame(screen,width=300,height=800,bg = "white")
+CadreLeft= Frame(screen,width=300,height=800,bg = color)
+Cadreright= Frame(screen,width=300,height=800,bg = color)
 
 #mise en forme des cadre:
-LabelTitre2 = Label(CadreLeft, text="Temperature",width=10,font=("arial",30),bg = "white")
-LabelTitre1 = Label(Cadreright,text="Batterie   ",width=10,font=("arial",30),bg = "white")
-LabelEcartG1 = Label(CadreLeft,height="17",width="10",bg = "white")
+LabelTitre2 = Label(CadreLeft, text="Temperature",width=10,font=("arial",30),bg = color ,fg = TextColor)
+LabelTitre1 = Label(Cadreright,text="Batterie   ",width=10,font=("arial",30),bg = color,fg = TextColor)
+LabelEcartG1 = Label(CadreLeft,height="17",width="10",bg = color)
 LabelAffichageG = Label(CadreLeft,width="10",height="2")
-LabelEcartG2 = Label(CadreLeft,height="8",width="10",bg = "white")
-LabelImageG = Label(CadreLeft,image=IMGNORMAL1,bg = "white")
-LabelEcartG3 = Label(CadreLeft,height="4",width="10",bg = "white")
+LabelEcartG2 = Label(CadreLeft,height="8",width="10",bg = color)
+LabelImageG = Label(CadreLeft,image=IMGNORMAL1,bg = color)
+LabelEcartG3 = Label(CadreLeft,height="4",width="10",bg = color)
 
-LabelEcartD1 = Label(Cadreright,height="6",width="10",bg = "white")
-LabelTextD1 = Label(Cadreright,text="Tension de la batterie",bg = "white")
+LabelEcartD1 = Label(Cadreright,height="6",width="10",bg = color)
+LabelTextD1 = Label(Cadreright,text="Tension de la batterie",bg = color,fg = TextColor)
 LabelAffichageD1 = Label(Cadreright,width="10",height="2")
-LabelEcartD2 = Label(Cadreright,height="8",width="10",bg = "white")
-LabelTextD2 = Label(Cadreright,text="Pourcentage",bg = "white")
+LabelEcartD2 = Label(Cadreright,height="8",width="10",bg = color)
+LabelTextD2 = Label(Cadreright,text="Pourcentage",bg = color,fg = TextColor)
 LabelAffichageD2 = Label(Cadreright,width="10",height="2")
-LabelEcartD3 = Label(Cadreright,height="8",width="10",bg = "white")
+LabelEcartD3 = Label(Cadreright,height="8",width="10",bg = color)
 LabelImageD = Label(Cadreright,image=IMG100,bg = "white")
-LabelEcartD4 = Label(Cadreright,height="4",width="10",bg = "white")
+LabelEcartD4 = Label(Cadreright,height="4",width="10",bg = color)
 #Bouton
 def CommandStart():
-    Telementrie.open()
+    VarBoucle =+ 1
     while VarBoucle == 1:
         serialdata = Telementrie.readline()
         print(serialdata)
+        time.sleep(1000)
 
  #Menu
-configMenu = Menu(screen)
+configMenu = Menu(screen,bg=color,fg = TextColor)
 Option = Menu(configMenu,tearoff=0)
 StartStop = Menu(configMenu,tearoff=0)
 Option.add_command(label="Verification de la connextion",command=VerificationConnextion)
