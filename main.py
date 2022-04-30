@@ -48,7 +48,7 @@ Cadreright= Frame(screen,width=300,height=800,bg="blue")
 
 #mise en forme des cadre:
 LabelTitre2 = Label(CadreLeft, text="Temperature",bg="blue",fg="white",font=("arial",30))
-LabelTitre1 = Label(Cadreright,text="  Batterie ",bg="blue",fg="white",font=("arial",30))
+LabelTitre1 = Label(Cadreright,text="Batterie   ",bg="blue",fg="white",font=("arial",30))
 LabelTemp = Label(CadreLeft)
 LabelBat = Label(Cadreright)
 LabelEcartG1 = Label(CadreLeft,height="17",width="10",bg="blue")
