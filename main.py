@@ -5,6 +5,19 @@ import time
 port ="/dev/ttyUSB0"
 color = "white"
 TextColor = "black"
+#fonction de noitoiment des donnes
+def nettoieTemp(L):
+    temp=L[4:]
+    NewL = temp[:-11]
+    NewL = int(NewL)
+    return NewL
+def nettoieTension(L):
+    temp=L[7:]
+    NewL = temp[:-7]
+    NewL = float(NewL)
+    NewL = NewL / 100
+    return NewL 
+
 #fenetre principale
 screen = Tk()
 screen.title("BMW M1 #1 telemetrie")
@@ -59,8 +72,14 @@ def CommandStart():
     VarBoucle =+ 1
     while VarBoucle == 1:
         serialdata = Telementrie.readline()
-        print(serialdata)
-        time.sleep(1000)
+        rawdata = str(serialdata)
+        
+        temperature = nettoieTemp(rawdata)
+        LabelAffichageG['text'] = temperature
+        tension = nettoieTension(rawdata)
+        TensionSTR = str(tension)
+        LabelAffichageD1['text'] = TensionSTR
+        
 
  #Menu
 configMenu = Menu(screen,bg=color,fg = TextColor)
