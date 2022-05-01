@@ -95,14 +95,27 @@ def AffichageTemp():
 def CommandStart():
     VarBoucle =+ 1
     while VarBoucle == 1:
+        time.sleep(1)
         serialdata = Telementrie.readline()
-        rawdata = str(serialdata)
+        rawdata1 = str(serialdata)
         
-        temperature = nettoieTemp(rawdata)
-        LabelAffichageG['text'] = temperature
-        tension = nettoieTension(rawdata)
-        TensionSTR = str(tension)
-        LabelAffichageD1['text'] = TensionSTR
+        temperature = nettoieTemp(rawdata1)
+        temperatureSTR1 =  str(temperature)
+        LabelAffichageG['text'] = temperatureSTR1
+        tension = nettoieTension(rawdata1)
+        TensionSTR1 = str(tension)
+        LabelAffichageD1['text'] = TensionSTR1
+        
+        rawdata2 = str(serialdata)
+        temperature = nettoieTemp(rawdata2)
+        temperatureSTR2 =  str(temperature)
+        LabelAffichageG['text'] = temperatureSTR2
+        tension = nettoieTension(rawdata2)
+        TensionSTR2 = str(tension)
+        LabelAffichageD1['text'] = TensionSTR2
+
+        print("Temperature= ",temperature)
+        print("Tension= ",tension)
         
 configMenu = Menu(screen,bg=color,fg = TextColor)
 Option = Menu(configMenu,tearoff=0)
