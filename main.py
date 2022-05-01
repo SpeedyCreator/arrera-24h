@@ -67,7 +67,31 @@ LabelAffichageD2 = Label(Cadreright,width="10",height="2")
 LabelEcartD3 = Label(Cadreright,height="8",width="10",bg = color)
 LabelImageD = Label(Cadreright,image=IMG100,bg = "white")
 LabelEcartD4 = Label(Cadreright,height="4",width="10",bg = color)
-#Bouton
+#affichage
+def affichagePrincipal():
+    CadreLeft.pack(side="left")
+    Cadreright.pack(side="right")
+    labelImage.pack()
+    LabelTitre2.pack()
+    LabelTitre1.pack()
+def Affichagetension():
+    LabelEcartD1.pack()
+    LabelTextD1.pack()
+    LabelAffichageD1.pack()
+    LabelEcartD2.pack()
+    LabelTextD2.pack()
+    LabelAffichageD2.pack()
+    LabelEcartD3.pack()
+    LabelImageD.pack()
+    LabelEcartD4.pack()
+def AffichageTemp():
+    LabelEcartG1.pack()
+    LabelAffichageG.pack()
+    LabelEcartG2.pack()
+    LabelImageG.pack()
+    LabelEcartG3.pack()
+
+#Menu
 def CommandStart():
     VarBoucle =+ 1
     while VarBoucle == 1:
@@ -80,8 +104,6 @@ def CommandStart():
         TensionSTR = str(tension)
         LabelAffichageD1['text'] = TensionSTR
         
-
- #Menu
 configMenu = Menu(screen,bg=color,fg = TextColor)
 Option = Menu(configMenu,tearoff=0)
 StartStop = Menu(configMenu,tearoff=0)
@@ -95,26 +117,8 @@ configMenu.add_cascade(label="On off",menu=StartStop)
 screen.config(menu=configMenu) 
 
 #affichage
-CadreLeft.pack(side="left")
-Cadreright.pack(side="right")
-labelImage.pack()
-LabelTitre2.pack()
-LabelTitre1.pack()
-#Zone tension
-LabelEcartD1.pack()
-LabelTextD1.pack()
-LabelAffichageD1.pack()
-LabelEcartD2.pack()
-LabelTextD2.pack()
-LabelAffichageD2.pack()
-LabelEcartD3.pack()
-LabelImageD.pack()
-LabelEcartD4.pack()
-#Zone temperature
-LabelEcartG1.pack()
-LabelAffichageG.pack()
-LabelEcartG2.pack()
-LabelImageG.pack()
-LabelEcartG3.pack()
+affichagePrincipal()
+Affichagetension()
+AffichageTemp()
 
 screen.mainloop()
