@@ -10,3 +10,7 @@ Connecter l'arduino :
 
 
 Changer le port dans le code python par :  /dev/rfcomm0
+
+site : 
+
+    https://www.pcsuggest.com/linux-bluetooth-setup-hcitool-bluez/
