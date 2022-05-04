@@ -1,0 +1,12 @@
+sudo hciconfig hci0 up 
+
+Recuperer l'adresse mac dans la presse papier : 
+    hcitool scan 
+
+
+
+Connecter l'arduino : 
+    rfcomm connect <bluetooth host device> <Target bluetooth device MAC> <channel> 
+
+
+Changer le port dans le code python par :  /dev/rfcomm0
