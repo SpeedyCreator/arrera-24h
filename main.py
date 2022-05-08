@@ -7,7 +7,7 @@ VarBoucle = 0
 port ="/dev/ttyUSB0"
 color = "white"
 TextColor = "black"
-Tmax = 8.00
+Tmax = 8
 vide =""
 #fonction de noitoiment des donnes
 def nettoieTemp(L):
@@ -103,13 +103,14 @@ def affichageValeur():
     print(rawdata1)
     temperature = nettoieTemp(rawdata1)
     tension = nettoieTension(rawdata1) 
-    pourcentage = tension * 100 / Tmax
+    pourcentage = int(tension * 100 / Tmax)
     pourcentageSTR = str(pourcentage)
     temperatureSTR1 =  str(temperature)
     TensionSTR1 = str(tension)
     LabelAffichageG['text'] = temperatureSTR1
     LabelAffichageD1['text'] = TensionSTR1
     LabelAffichageD2['text'] = pourcentageSTR
+    """"
     if temperature >= 17 :
         LabelImageG['image'] = IMGFROID
     if temperature <= 17  and temperature >= 30 :
@@ -131,6 +132,7 @@ def affichageValeur():
         LabelImageD['image'] = IMG80
     if pourcentage <= 80 and pourcentage >= 100:
         LabelImageD['image'] = IMG100
+    """
 def CommandStart():
     VarBoucle =+1 
     while VarBoucle == 1 :
