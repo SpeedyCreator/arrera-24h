@@ -110,55 +110,62 @@ def affichageValeur():
     LabelAffichageG['text'] = temperatureSTR1
     LabelAffichageD1['text'] = TensionSTR1
     LabelAffichageD2['text'] = pourcentageSTR
-    """"
-    if temperature >= 17 :
-        LabelImageG['image'] = IMGFROID
-    if temperature <= 17  and temperature >= 30 :
-        LabelImageG['image'] = IMGNORMAL1
-    if temperature <= 30 and temperature >= 45 :
-        LabelImageG['image'] = IMGNORMAL2
-    if temperature <= 45 : 
-        LabelImageG['image'] = IMGCHAUD  
     
+    if 17 >= temperature  :
+        LabelImageG['image'] = IMGFROID
+    else :
+        LabelImageG['image'] = IMGNORMAL1
+    
+    if 17 <= temperature >= 9 :
+        LabelImageG['image'] = IMGNORMAL1
+    else :
+        LabelImageG['image'] = IMGNORMAL1
+
+    if  30 <= temperature >= 44 :
+        LabelImageG['image'] = IMGNORMAL2
+    else :
+        LabelImageG['image'] = IMGNORMAL1
+
+    if temperature <= 45 : 
+        LabelImageG['image'] = IMGCHAUD
+    else :
+        LabelImageG['image'] = IMGNORMAL1
+  
     if pourcentage >= 1:
         LabelImageD['image'] = IMG0
-    if pourcentage <= 1 and pourcentage >= 19:
+    else :
+        LabelImageD['image'] = IMG0
+    
+    if 1 <= pourcentage >= 19:
         LabelImageD['image'] = IMG20
-    if pourcentage <= 20 and pourcentage >= 39:
-        LabelImageD['image'] = IMG40   
-    if pourcentage <= 40 and pourcentage >= 59:
-        LabelImageD['image'] = IMG60
-    if pourcentage <= 60 and pourcentage >= 79:
-        LabelImageD['image'] = IMG80
-    if pourcentage <= 80 and pourcentage >= 100:
-        LabelImageD['image'] = IMG100
-    """
-def CommandStart():
-    VarBoucle =+1 
-    while VarBoucle == 1 :
-        affichageValeur()
-        LabelAffichageD1.update()
-        LabelAffichageD2.update()
-        LabelAffichageG.update()
-        LabelImageD.update()
-        LabelImageG.update()
-        time.sleep(1.5)
-        affichageValeur()
-        LabelAffichageD1.update()
-        LabelAffichageD2.update()
-        LabelAffichageG.update()
-        LabelImageD.update()
-        LabelImageG.update()
-        time.sleep(1.5)
-        affichageValeur()
-        LabelAffichageD1.update()
-        LabelAffichageD2.update()
-        LabelAffichageG.update()
-        LabelImageD.update()
-        LabelImageG.update()
-        time.sleep(1.5)
-        affichageValeur()
+    else :
+        LabelImageD['image'] = IMG0
+    
+    if  20 <= pourcentage >= 39:
+        LabelImageD['image'] = IMG40 
+    else :
+        LabelImageD['image'] = IMG0
 
+    if 40 <= pourcentage >= 59:
+        LabelImageD['image'] = IMG60
+    else :
+        LabelImageD['image'] = IMG0
+
+    if 60 <= pourcentage >= 79:
+        LabelImageD['image'] = IMG80
+    else :
+        LabelImageD['image'] = IMG0
+
+    if 80 <= pourcentage >= 100:
+        LabelImageD['image'] = IMG100
+    else :
+        LabelImageD['image'] = IMG0
+    
+    LabelAffichageD1.update()
+    LabelAffichageD2.update()
+    LabelAffichageG.update()
+    LabelImageD.update()
+    LabelImageG.update()
 def reste():
     LabelImageG['image']= IMGNORMAL1
     LabelImageD['image'] = IMG100
@@ -170,18 +177,28 @@ def reste():
     LabelAffichageG.update()
     LabelImageD.update()
     LabelImageG.update()
+def resetImage():
+    LabelImageG['image']= IMGNORMAL1
+    LabelImageD['image'] = IMG100
+    LabelImageD.update()
+    LabelImageG.update()
+def CommandStart():
+    VarBoucle =+1 
+    while VarBoucle == 1 :
+        affichageValeur()
+        time.sleep(1.5)
+        resetImage()
+        time.sleep(1.5)
 
         
 configMenu = Menu(screen,bg=color,fg = TextColor)
 Option = Menu(configMenu,tearoff=0)
 StartStop = Menu(configMenu,tearoff=0)
 Option.add_command(label="Verification de la connextion",command=VerificationConnextion)
-Option.add_command(label="Configuration baterie")
-Option.add_command(label="Configuration temperature")
 StartStop.add_command(label="Start",command=CommandStart)
 StartStop.add_command(label="Restet" ,command=reste)
-configMenu.add_cascade(label="Configuration",menu=Option)
-configMenu.add_cascade(label="On off",menu=StartStop)
+configMenu.add_cascade(label="Verification",menu=Option)
+configMenu.add_cascade(label="Demarage",menu=StartStop)
 screen.config(menu=configMenu) 
 
 #affichage
