@@ -160,7 +160,14 @@ def affichageValeur():
         LabelImageD['image'] = IMG100
     else :
         LabelImageD['image'] = IMG0
-    
+    if pourcentage >= 30 :
+        os.system("mpg123 " + "sons/bip.mp3")
+        os.system("mpg123" + "sons/bap.mp3")
+        os.system("mpg123 " + "sons/bip.mp3")
+    if temperature > 50 :
+        os.system("mpg123 " + "sons/bip.mp3")
+        os.system("mpg123" + "sons/temp.mp3")
+        os.system("mpg123 " + "sons/bip.mp3")
     LabelAffichageD1.update()
     LabelAffichageD2.update()
     LabelAffichageG.update()
